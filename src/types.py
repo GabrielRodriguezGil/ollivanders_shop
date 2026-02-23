@@ -8,3 +8,8 @@ class OllivanderShop:
 
     def getItems(self):
         return self.items
+
+
+class Interface:
+    def update_quality(self):
+        pass
