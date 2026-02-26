@@ -1,25 +1,6 @@
 import importlib
 import pytest
-
-
-def _find_Conjured():
-    candidates = [
-        "gildedrose.domain.conjured",
-        "gildedrose.conjured",
-        "conjured",
-        "domain.conjured",
-    ]
-    for mod in candidates:
-        try:
-            module = importlib.import_module(mod)
-        except ImportError:
-            continue
-        if hasattr(module, "Conjured"):
-            return module.Conjured
-    pytest.skip("Conjured not found in known locations", allow_module_level=True)
-
-
-Conjured = _find_Conjured()
+from src.types import Conjured
 
 
 def _get(obj, *names):
