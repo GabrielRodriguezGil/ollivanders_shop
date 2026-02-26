@@ -51,3 +51,21 @@ class NormalItem(Interface, Item):
 
     def _set_sell_in(self):
         self.sell_in -= 1
+
+
+class Conjured(NormalItem):
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+
+    def get_quality(self):
+        return self.quality
+
+    def update_quality(self):
+        if self.sell_in > 0:
+            self.setQuality(-2)
+        else:
+            self.setQuality(-4)
+        self._set_sell_in()
+
+    def _set_sell_in(self):
+        self.sell_in -= 1
