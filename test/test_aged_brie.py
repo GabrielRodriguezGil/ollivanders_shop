@@ -1,5 +1,6 @@
 import importlib
 import pytest
+from src.types import AgedBrie
 
 
 def _find_AgedBrie():
@@ -18,9 +19,6 @@ def _find_AgedBrie():
         if hasattr(module, "AgedBrie"):
             return module.AgedBrie
     pytest.skip("AgedBrie not found in known locations", allow_module_level=True)
-
-
-AgedBrie = _find_AgedBrie()
 
 
 def _get(obj, *names):
