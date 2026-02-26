@@ -34,15 +34,20 @@ class NormalItem(Interface, Item):
     def get_quality(self):
         return self.quality
 
-    def update_quality(self):
-        if self.quality == 0:
-            self._set_sell_in()
-        elif self.sell_in > 0:
-            self._set_sell_in()
-            self.quality -= 1
+    def setQuality(self, quantity):
+        if self.quality + quantity < 0:
+            self.quality = 0
+        elif self.quality + quantity > 50:
+            self.quality = 50
         else:
-            self._set_sell_in()
-            self.quality -= 2
+            self.quality += quantity
+
+    def update_quality(self):
+        if self.sell_in > 0:
+            self.setQuality(-1)
+        else:
+            self.setQuality(-2)
+        self._set_sell_in()
 
     def _set_sell_in(self):
         self.sell_in -= 1
